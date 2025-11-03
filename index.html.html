@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summit - L'app de rencontre pour passionnés de montagne</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #f7fafc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '🏔️';
+            font-size: 200px;
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            opacity: 0.1;
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-primary {
+            background: white;
+            color: #667eea;
+            padding: 18px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .signup-count {
+            margin-top: 30px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .signup-count strong {
+            font-size: 1.3em;
+            color: #ffd700;
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .problem h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #2d3748;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .problem-card {
+            background: #fff5f5;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #fc8181;
+        }
+        
+        .problem-card h3 {
+            color: #c53030;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        /* Solution Section */
+        .solution {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+        }
+        
+        .solution h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #2d3748;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #48bb78;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        /* Form Section */
+        .signup-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .signup-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .signup-box h2 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .privacy-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #718096;
+            font-size: 0.9em;
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: #f7fafc;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .faq-question {
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .faq-answer {
+            color: #4a5568;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .success-message {
+            display: none;
+            background: #48bb78;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1em;
+            }
+            
+            .signup-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🏔️ Trouve ton partenaire de cordée... et de vie</h1>
+            <p class="subtitle">Enfin une app de rencontre pour les VRAIS passionnés de rando, trail et montagne</p>
+            <a href="#signup" class="cta-primary">Rejoindre la liste d'attente (gratuit)</a>
+            <p class="signup-count">🔥 <strong id="counter">247</strong> passionnés déjà inscrits</p>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>Le problème qu'on connaît tous...</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>❌ Sur Tinder</h3>
+                    <p>"J'aime la nature" = 1 rando en 2022 et des photos de son chat</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Sur Bumble</h3>
+                    <p>Impossible de filtrer par niveau technique. Ton GR20 vs sa "balade" au parc...</p>
+                </div>
+                <div class="problem-card">
+                    <h3>❌ Dans les clubs</h3>
+                    <p>Difficile de savoir qui est célibataire sans être gênant</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <h2>Summit : La solution qu'on attendait</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Profils ultra-détaillés</h3>
+                    <p>GR réalisés, sommets gravis, niveau technique, fréquence des sorties</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧭</div>
+                    <h3>Matching intelligent</h3>
+                    <p>Trouve quelqu'un à ton niveau et dans ta région</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Suggestions de dates</h3>
+                    <p>"Rando au Lac d'Annecy dimanche ?" - Spots intégrés</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>100% sécurisé</h3>
+                    <p>Vérification d'identité, 0 faux profils, modération active</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Ce qu'en pensent les passionnés</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Enfin ! J'en rêvais depuis des années. Sur les apps classiques, personne ne comprend ma passion."</p>
+                    <p class="testimonial-author">— Marie, 32 ans, Grenoble</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Si ça existait je supprime Tinder direct. Fini de perdre du temps avec des gens qui pensent que randonner = 30 min de marche."</p>
+                    <p class="testimonial-author">— Thomas, 28 ans, Annecy</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Génial pour trouver un partenaire de trail ! Et si en plus ça devient une relation, c'est le jackpot 😊"</p>
+                    <p class="testimonial-author">— Sophie, 35 ans, Lyon</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signup Form -->
+    <section id="signup" class="signup-section">
+        <div class="container">
+            <div class="signup-box">
+                <div id="successMessage" class="success-message">
+                    ✅ Merci ! Tu es inscrit(e) à la liste d'attente. On te contacte dès le lancement !
+                </div>
+                
+                <h2>🚀 Sois parmi les premiers !</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" required placeholder="ton@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prenom">Prénom *</label>
+                        <input type="text" id="prenom" required placeholder="Marie">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ville">Ville / Région *</label>
+                        <input type="text" id="ville" required placeholder="Lyon, Grenoble, Chamonix...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="niveau">Ton niveau en rando/trail *</label>
+                        <select id="niveau" required>
+                            <option value="">-- Choisir --</option>
+                            <option value="debutant">Débutant (sorties occasionnelles)</option>
+                            <option value="intermediaire">Intermédiaire (1-2x par mois)</option>
+                            <option value="confirme">Confirmé (chaque weekend)</option>
+                            <option value="expert">Expert (multi-jours, haute-montagne)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="activites">Tes activités préférées (plusieurs choix possibles)</label>
+                        <select id="activites" multiple size="5">
+                            <option value="randonnee">Randonnée</option>
+                            <option value="trail">Trail running</option>
+                            <option value="alpinisme">Alpinisme</option>
+                            <option value="escalade">Escalade</option>
+                            <option value="ski-rando">Ski de randonnée</option>
+                            <option value="bivouac">Bivouac / Trekking</option>
+                            <option value="vtt">VTT montagne</option>
+                        </select>
+                        <small style="color: #718096; display: block; margin-top: 5px;">Maintiens Ctrl (ou Cmd) pour sélectionner plusieurs</small>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">✅ M'inscrire à la liste d'attente</button>
+                    
+                    <p class="privacy-note">🔒 0 spam promis. Juste 1 email au lancement de l'app.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Questions fréquentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <p class="faq-question">💰 C'est payant ?</p>
+                    <p class="faq-answer">Gratuit au lancement pour tous les early-birds inscrits sur cette page ! Ensuite, un abonnement freemium sera proposé (~10€/mois pour les fonctionnalités premium).</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">📅 Quand ça sort ?</p>
+                    <p class="faq-answer">Lancement prévu en Mars 2025 si on atteint 500 inscriptions ! Plus on est nombreux, plus l'app sera utile dès le premier jour.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">📱 iOS et Android ?</p>
+                    <p class="faq-answer">Oui ! L'app sera disponible sur iPhone et Android simultanément.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">🌍 Seulement en France ?</p>
+                    <p class="faq-answer">On démarre en France, puis expansion en Suisse, Belgique et autres pays francophones selon la demande.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">🤝 Peut-on trouver des amis aussi (pas que dating) ?</p>
+                    <p class="faq-answer">Oui ! Un mode "Recherche partenaire de rando" sera disponible pour ceux qui cherchent juste des compagnons de sortie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Summit - L'app de rencontre pour passionnés de montagne 🏔️</p>
+        <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">Un projet créé par des passionnés, pour des passionnés</p>
+    </footer>
+
+    <script>
+        // Animation du compteur
+        function animateCounter() {
+            const counter = document.getElementById('counter');
+            const target = 247;
+            let current = 180;
+            
+            const interval = setInterval(() => {
+                current += Math.floor(Math.random() * 5) + 1;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(interval);
+                }
+                counter.textContent = current;
+            }, 50);
+        }
+        
+        animateCounter();
+        
+        // Incrémentation réaliste du compteur toutes les 30 secondes
+        setInterval(() => {
+            const counter = document.getElementById('counter');
+            let current = parseInt(counter.textContent);
+            if (Math.random() > 0.5) { // 50% de chance d'incrémenter
+                current += 1;
+                counter.textContent = current;
+            }
+        }, 30000);
+        
+        // Gestion du formulaire
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupération des données
+            const formData = {
+                email: document.getElementById('email').value,
+                prenom: document.getElementById('prenom').value,
+                ville: document.getElementById('ville').value,
+                niveau: document.getElementById('niveau').value,
+                activites: Array.from(document.getElementById('activites').selectedOptions).map(opt => opt.value)
+            };
+            
+            // Simulation d'envoi (à remplacer par ton backend ou service comme Tally/Typeform)
+            console.log('Données collectées:', formData);
+            
+            // Afficher le message de succès
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Incrémenter le compteur
+            const counter = document.getElementById('counter');
+            counter.textContent = parseInt(counter.textContent) + 1;
+            
+            // Réinitialiser le formulaire
+            this.reset();
+            
+            // Scroll vers le message de succès
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Masquer le message après 5 secondes
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+            
+            // ICI : Intégrer ton service de collecte d'emails
+            // Exemples :
+            // - Webhook Tally.so
+            // - API Convertkit
+            // - Google Sheets via Apps Script
+            // - Ton propre backend Node.js
+        });
+        
+        // Smooth scroll pour le CTA
+        document.querySelector('a[href="#signup"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('signup').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
